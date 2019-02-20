@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Med.Egov.Lib.Model
 {
-    public class MedOrg
+    public sealed class MedOrg
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
 
@@ -23,9 +24,13 @@ namespace Med.Egov.Lib.Model
             this.Address = address;
             Patiens = new List<Patient>();
         }
+    }
 
+    public class PatientAddedMed
+    {
+        public int Id { get; set; }
+        public int MedOrgId { get; set; }
 
-
-
+        public int PatientId { get; set; }
     }
 }

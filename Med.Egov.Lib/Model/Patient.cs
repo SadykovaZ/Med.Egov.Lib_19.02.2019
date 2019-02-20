@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace Med.Egov.Lib.Model
 {
-    public class Patient
+    public class Patient:People
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string MiddleName { get; set; }
+        public Patient() : base()
+        {
+
+        }
+
+        public Patient(string name, string surname, string middleName = ""): base(name, surname,middleName)
+        {
+            this.Name = name;
+            this.Surname = surname;
+            this.MiddleName = middleName;
+        }
 
         private string IIN;
         public string Iin {
@@ -28,9 +36,17 @@ namespace Med.Egov.Lib.Model
             }
         }
         public MedOrg MedOrg { get; set; } = null;
+        public int MedOrgID { get; set; }
 
+        public override void PrintInfo()
+        {
+            base.PrintInfo();
+            Console.WriteLine("Прикреплен к {0}", MedOrg.Name);
+        }
 
-
-
+        public override double GetDiscount()
+        {
+            return 0.2;
+        }
     }
 }
